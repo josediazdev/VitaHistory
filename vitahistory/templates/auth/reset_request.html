@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Reset{% endblock %}
+
+{% block header %}
+    {% include 'snippets/navbar.html' %}
+{% endblock %}
+
+
+{% block content %}
+
+{% include 'snippets/flashes.html' %}
+
+<div class="reset-container">
+  <form class="form-reset" method="POST">
+    <label class="text-form" for="email">Correo electrónico</label>
+    <input class="text-form" id="email" name="email" type="text" required>
+
+    <button class="global-btn reset-button" type="submit">Enviar</button>
+  </form>
+</div>
+
+{% endblock %}
+

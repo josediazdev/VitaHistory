@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete person{% endblock %}
+
+{% block header %}
+    {% include 'snippets/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'snippets/flashes.html' %}
+
+<div class="persons-container">
+    <button class="simple-btn create-person-btn-one"><a href="{{ url_for('person.create_person') }}">Crear nuevo</a></button>
+
+    <div class="header-section header-delete-section">
+      <div class="profile-section">
+	<img class="account-user-picture round-picture" src="{{ image_user }}">
+
+	<div class="user-info">
+	  <p>{{ current_user.speciality }}</p>
+	  <h2>{{ current_user.firstname }} {{ current_user.secondname }}</h2>
+	  <p>Nro. de pacientes: ({{ persons.total }})</p>
+	</div>
+
+      </div>
+      <button class="simple-btn create-person-btn-two"><a href="{{ url_for('person.create_person') }}">Crear nuevo</a></button>
+    </div>
+
+    <form class="delete-person" method="POST">
+
+      <input type="hidden" name="formulario" value="1">
+
+      <h3>{{ person.fullname }}</h3>
+
+      <div class="btn-container">
+	<button class="cancel-btn delete-button" type="submit">Eliminar</button>
+      </div>
+    </form>
+
+
+    <div class="persons-container-content">
+      {% for person in persons %}
+	  <div class="person-container">
+	    <div class="person-content">
+	      <img class="round-picture picture-person" src="{{ url_for('static', filename='image/' + person.image_person) }}" >
+	      <div class="person-info">
+		<h1 class="name-title"><a href="{{ url_for('history.show_histories', person_id=person.id) }}">{{ person.fullname }}</a></h1>
+		<p class="info-text">{{ person.category }}</p>
+		<p class="info-text last_visit">Última visita: {{ person.date_in.strftime("%d/%m") }}</p>
+	      </div>
+
+
+
+	      <div class="icons-container">
+		<a href="{{ url_for('history.show_histories', person_id=person.id) }}"><i class="fas fa-eye"></i></a>
+		<a href="{{ url_for('person.edit_person', person_id=person.id) }}"><i class="fas fa-pen"></i></a>
+		<a href="{{ url_for('person.delete_person', person_id=person.id) }}"><i class="fas fa-trash"></i></a>
+
+	      </div>
+	    </div>
+	  </div>
+	{% endfor %}
+      </div>
+
+
+    <div class="pagination-container">
+      <div class="pagination-content">
+	{% for page_num in persons.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
+	  {% if page_num %}
+	    {% if persons.page == page_num %}
+	      <a class="pag-btn actual-btn" href="{{ url_for('person.persons', page=page_num) }}">{{ page_num }}</a>
+	    {% else %}
+	      <a class="pag-btn" href="{{ url_for('person.persons', page=page_num) }}">{{ page_num }}</a>
+	    {% endif %}
+	  {% else %}
+	    ...
+	  {% endif %}
+	{% endfor %}
+      </div>
+    </div>
+
+</div>
+{% endblock %}
+
+

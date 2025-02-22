@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+  <div class="link-header">
+
+  <img class="image-logo-register-one" src="{{ url_for('static', filename='image/logo-vt-peq.webp') }}">
+
+  <a href="{{ url_for('index.home') }}"><span class="special-text-two">Volver a inicio</span></a>
+
+    <p class="more-info-one">Si ya tienes una cuenta registrada puedes <a class="special-text-two" href="{{ url_for('auth.login') }}">Iniciar sesión</a></p>
+  </div>
+
+  {% include 'snippets/flashes.html' %}
+
+<div class="register-container">
+
+  <img class="image-logo-register-two" src="{{ url_for('static', filename='image/logo-vt-peq.webp') }}">
+
+  <form class="form-register" method="POST">
+
+    <div class="field-double">
+      <div class="left-field">
+	<label class="text-form" for="firstname">Nombre</label>
+	<input class="text-form short-field" id="firstname" name="firstname" type="text" required>
+      </div>
+
+      <div class="right-field">
+	<label class="text-form" for="secondname">Apellido</label>
+	<input class="text-form short-field" id="secondname" name="secondname" type="text" required>
+      </div>
+    </div>
+
+    <label class="text-form" for="email">Correo electrónico</label>
+    <input class="text-form long-field" id="email" name="email" type="email" required>
+
+
+    <div class="mid-form-container">
+      <label class="text-form" for="password">Contraseña</label>
+      <div class="input-form-container">
+	<input class="text-form mid-field" id="password" name="password" type="password" required>
+	<span class="interrogation-icon">?</span>
+
+	<p class="hided-message">Para mayor seguridad: longitud mínima 8 caracteres, incluye letras y números, agrega un símbolo especial.</p>
+      </div>
+    </div>
+
+      <label class="text-form" for="password_two">Repetir contraseña</label>
+      <input class="text-form mid-field" id="password_two" name="password_two" type="password" required>
+    
+
+    <div class="mid-form-container">
+      <label class="text-form" for="username">Nombre de usuario</label>
+      <div class="input-form-container">
+	<input class="text-form mid-field" id="username" name="username" type="text" required>
+	<span class="interrogation-icon">?</span>
+	<p class="hided-message">Nombre de usuario único, te permite iniciar sesión rápidamente, también puedes iniciar sesión con tu correo electrónico.</p>
+      </div>
+    </div>
+
+
+    <div class="field-double">
+
+      <div class="left-field">
+	<label class="text-form" for="gender">Género</label>
+
+	<select class="text-form short-field" id="gender" name="gender" type="text" required>
+	  <option value="Masculino">Masculino</option>
+	  <option value="Femenino">Femenino</option>
+	</select>
+
+      </div>
+
+      <div class="right-field">
+	<label class="text-form" for="birthdate">Nacimiento</label>
+	<input class="text-form short-field" id="birthdate" name="birthdate" type="date" required>
+      </div>
+    </div>
+
+
+    <button class="global-btn login-button" type="submit">Registrarse</button>
+  </form>
+
+</div>
+{% endblock %}
+

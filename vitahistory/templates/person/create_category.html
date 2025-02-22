@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Create category{% endblock %}
+
+{% block header %}
+    {% include 'snippets/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'snippets/flashes.html' %}
+
+<div class="persons-container categories-container">
+    <button class="simple-btn create-person-btn-one create-category-btn"><a href="{{ url_for('person.create_category') }}">Crear categoría</a></button>
+
+    <div class="header-section">
+      <div class="profile-section">
+	<img class="account-user-picture round-picture" src="{{ image_user }}">
+
+	<div class="user-info">
+	  <p>{{ current_user.speciality }}</p>
+	  <h2>{{ current_user.firstname }} {{ current_user.secondname }}</h2>
+	  <p>Nro. de pacientes: ({{ persons.total }})</p>
+	</div>
+
+      </div>
+      <button class="simple-btn create-person-btn-two"><a href="{{ url_for('person.create_category') }}">Crear categoría</a></button>
+    </div>
+
+    <form class="create-category" method="POST">
+      <input type="hidden" name="formulario" value="1">
+      <input class="text-form category-field" id="category" name="category" placeholder="Nueva categoría" type="text" required>
+      <button class="global-btn account-button btn-category" type="submit">Crear categoría</button>
+    </form>
+
+    <div class="categories-container-content">
+      {% for category in categories %}
+	  <div class="category-container">
+
+	    <div class="category-content">
+
+	      <h1 class="name-title category-name">{{ category.name }}</h1>
+
+	      <div class="icons-container icons-container">
+		<a href="{{ url_for('person.delete_category', category_id=category.id) }}"><i class="fas fa-trash"></i></a>
+	      </div>
+
+	    </div>
+	  </div>
+	{% endfor %}
+      </div>
+
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete history{% endblock %}
+
+{% block header %}
+    {% include 'snippets/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'snippets/flashes.html' %}
+  <div class="histories-section-container">
+
+
+    <button class="simple-btn back-person-btn-one"><a href="{{ url_for('person.persons') }}">Volver</a></button>
+    <button class="simple-btn create-person-btn-one create-history-btn"><a href="{{ url_for('history.create_history', person_id=person.id) }}">Crear historia</a></button>
+
+    <div class="header-section edit-person">
+      <div class="profile-section">
+	<img class="account-user-picture round-picture" src="{{ image_user }}">
+
+	<div class="user-info">
+	  <p>{{ current_user.speciality }}</p>
+	  <h2>{{ current_user.firstname }} {{ current_user.secondname }}</h2>
+	  <p>Nro. de pacientes: ({{ persons.total }})</p>
+	</div>
+
+      </div>
+      <div class="button-container">
+	<button class="simple-btn create-person-btn-two"><a href="{{ url_for('person.persons') }}">Volver</a></button>
+	<button class="simple-btn create-person-btn-two"><a href="{{ url_for('history.create_history', person_id=person.id) }}">Crear historia</a></button>
+      </div>
+    </div>
+
+
+    <div class="person-container display-flex delete-history-person">
+      <img class="round-picture picture-person" src="{{ url_for('static', filename='image/' + person.image_person) }}" >
+
+      <div class="person-info">
+	<h1 class="name-title"><a href="{{ url_for('history.show_histories', person_id=person.id) }}">{{ person.fullname }}</a></h1>
+	<p class="info-text">{{ person.category }}</p>
+	<p class="info-text last_visit">Última visita: {{ person.date_in.strftime("%d/%m") }}</p>
+      </div>
+    </div>
+
+    <form class="delete-person form-delete-history" method="POST">
+
+      <div class="delete-history-container">
+	<h3 class="name-title">{{ history.title }}</h3>
+	<p class="info-text generation">F. de generación: {{ history.date_out.strftime("%d/%m/%Y") }}</p>
+      </div>
+
+
+      <div class="btn-container">
+	<button class="cancel-btn delete-button" type="submit">Eliminar historia</button>
+      </div>
+    </form>
+
+    <div class="histories-container">
+      {% for history in histories %}
+      <div class="history-container">
+	  <div class="history-content">
+	    <div class="header-icons-container">
+	      <h1 class="name-title">{{ history.title }}</h1>
+	      <div class="icons-container icons-histories">
+		<a href="{{ url_for('history.edit_history', history_id = history.id) }}"><i class="fas fa-pen"></i></a>
+		<a href="{{ url_for('history.delete_history', history_id = history.id) }}"><i class="fas fa-trash"></i></a>
+	      </div>
+	    </div>
+	    <p class="info-text">{{ history.content }}</p>
+	    <p class="info-text generation">F. de generación: {{ history.date_out.strftime("%d/%m/%Y") }}</p>
+	  </div>
+
+
+	</div>
+      {% endfor %}
+    </div>
+
+  </div>
+{% endblock %}
+
+
+

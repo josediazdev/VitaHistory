@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}
+    {% include 'snippets/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'snippets/flashes.html' %}
+<div class="body-container">
+  <div class="container container-hero-one">
+    <div class="hero-one">
+      <img class="image-hero-one" src="{{ url_for('static', filename='image/logo-hero-uno.webp') }}">
+      <div class="hero-one-text">
+	<h1 class="primary-title">VitaHistory</h1>
+	<br>
+	<p class="secundary-text">tu espacio vital</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container container-hero-two">
+    <div class="max-width">
+      <div class="hero-two">
+	<h2 class="secundary-title">Todavía no tienes una cuenta en VitaHistory?</h2>
+	<button class="global-btn"><a href="{{ url_for('auth.register') }}">Registrate ahora</a></button>
+	<h2 class="secundary-title">ES GRATIS!</h2>
+      </div>
+
+      <img src="{{ url_for('static', filename='image/logo-hero-dos.webp') }}" class="image-hero-two">
+      </div>
+    </div>
+
+  <div class="container container-hero-three">
+    <div class="max-width">
+      <div class="hero-three">
+	<img src="{{ url_for('static', filename='image/logo-hero-tres.webp') }}" class="image-hero-three">
+	<h2 class="secundary-title">VitaHistory es ideal para profesionales y especialistas de la salud que buscan <span class="special-text">eficiencia</span> y <span class="special-text">organización</span>.</h2>
+      </div>
+      </div>
+
+    </div>
+  <div class="container container-hero-four">
+    <div class="max-width">
+      <div class="hero-four">
+	<div class="info-app-container">
+	  <p class="info-app-one tertiary-title">Sabemos que lo más importante al final del día es la <span class="special-text">calidad del servicio</span> y el <span class="special-text">bienestar</span> de las personas.</p>
+	  <p class="info-app-two tertiary-title">Por eso cada día mejoramos nuestro producto y brindamos nuevas funcionalidades a nuestros usuarios.</p>
+	</div>
+	<button class="global-btn display-none"><a href="#">Nuestros servicios</a></button>
+      </div>
+      <img src="{{ url_for('static', filename='image/logo-hero-cuatro.webp') }}" class="image-hero-four">
+      </div>
+
+    </div>
+  <div class="container container-hero-five">
+    <div class="max-width">
+      <div class="hero-five">
+	<h1 class="secundary-title">Que esperas para organizar <span class="special-text">todos</span> tus informes en <span class="special-text">un solo lugar</span>?</h1>
+	<button class="global-btn"><a href="{{ url_for('auth.register') }}">Registrarse hoy</a></button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container container-footer">
+    <p class="footer-text">&copy; Copyright VitaHistory {{ current_year }}</p>
+    <p class="footer-text">Creado por<a href="#" class="link author-page">Jorman Diaz</a></p>
+  </div>
+</div>
+
+{% endblock %}

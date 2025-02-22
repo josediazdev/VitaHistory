@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit person{% endblock %}
+
+{% block header %}
+    {% include 'snippets/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'snippets/flashes.html' %}
+<div class="create-person-container">
+
+
+    <button class="simple-btn back-person-btn-one"><a href="{{ url_for('person.persons') }}">Volver</a></button>
+
+    <div class="header-section edit-person">
+      <div class="profile-section">
+	<img class="account-user-picture round-picture" src="{{ image_user }}">
+
+	<div class="user-info">
+	  <p>{{ current_user.speciality }}</p>
+	  <h2>{{ current_user.firstname }} {{ current_user.secondname }}</h2>
+	  <p>Nro. de pacientes: ({{ persons.total }})</p>
+	</div>
+
+      </div>
+      <button class="simple-btn create-person-btn-two"><a href="{{ url_for('person.persons') }}">Volver</a></button>
+    </div>
+
+    <div class="person-container display-flex">
+      <img class="round-picture picture-person" src="{{ url_for('static', filename='image/' + person.image_person) }}" >
+
+      <div class="person-info">
+	<h1 class="name-title"><a href="{{ url_for('history.show_histories', person_id=person.id) }}">{{ person.fullname }}</a></h1>
+	<p class="info-text">{{ person.category }}</p>
+	<p class="info-text last_visit">Última visita: {{ person.date_in.strftime("%d/%m") }}</p>
+      </div>
+    </div>
+
+  <form class="form-create-person" method="POST" enctype="multipart/form-data">
+
+    <label class="text-form" for="fullname">Nombre completo</label>
+    <input class="text-form" id="fullname" name="fullname" value="{{ person.fullname }}" type="text" required>
+
+    <label class="text-form" for="email">Correo electrónico</label>
+    <input class="text-form long-field" id="email" name="email" value="{{ person.email }}" type="email" required>
+
+    <label class="text-form" for="phonenumber">Número telefónico</label>
+    <input class="text-form long-field" id="phonenumber" name="phonenumber" type="number" value={{ person.phonenumber }} required>
+
+    <label class="text-form" for="category">Categoría</label>
+
+    <div class="field-double">
+      <div class="left-field">
+	<select class="text-form" id="category" name="category" type="text" required>
+	{% for category in categories %}
+	  <option value="{{ category.name }}">{{ category.name }}</option>
+	{% endfor %}
+	  <option value="{{ person.category }}" selected>{{ person.category }}</option>
+	</select>
+      </div>
+      <div class="right-field">
+      </div>
+    </div>
+
+    <div class="field-double">
+      <div class="left-field">
+	<input class="update-btn" name="picture" id="picture" type="file" accept=".jpg, .png">
+	<div class="photo-btn overlay-layer">Subir foto</div>
+      </div>
+
+      <div class="right-field">
+	<button class="global-btn account-button" type="submit">Actualizar</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}
+

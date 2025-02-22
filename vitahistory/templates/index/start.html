@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block header %}
+    {% include 'snippets/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'snippets/flashes.html' %}
+<div class="principal-menu-container">
+
+  <div class="menu-image image-container-one"><a href="{{ url_for('person.persons') }}">Pacientes registrados</a></div>
+  <div class="menu-image image-container-two"><a href="{{ url_for('index.work_in_progress') }}">Citas pendientes</a></div>
+  <div class="menu-image image-container-three"><a href="{{ url_for('index.work_in_progress') }}">Pagos por cuotas</a></div>
+</div>
+{% endblock %}
+

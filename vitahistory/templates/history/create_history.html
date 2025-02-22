@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Create history{% endblock %}
+
+{% block header %}
+    {% include 'snippets/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'snippets/flashes.html' %}
+{% if person.author.id == current_user.id %}
+<div class="create-history-container histories-section-container">
+
+    <button class="simple-btn back-person-btn-one"><a href="{{ url_for('history.show_histories', person_id = person.id) }}">Volver</a></button>
+
+    <div class="header-section edit-person">
+      <div class="profile-section">
+	<img class="account-user-picture round-picture" src="{{ image_user }}">
+
+	<div class="user-info">
+	  <p>{{ current_user.speciality }}</p>
+	  <h2>{{ current_user.firstname }} {{ current_user.secondname }}</h2>
+	  <p>Nro. de pacientes: ({{ persons.total }})</p>
+	</div>
+
+      </div>
+      <div class="button-container">
+	<button class="simple-btn create-person-btn-two"><a href="{{ url_for('history.show_histories', person_id = person.id) }}">Volver</a></button>
+      </div>
+    </div>
+
+    <div class="person-container display-flex">
+      <img class="round-picture picture-person" src="{{ url_for('static', filename='image/' + person.image_person) }}" >
+
+      <div class="person-info">
+	<h1 class="name-title"><a href="{{ url_for('history.show_histories', person_id=person.id) }}">{{ person.fullname }}</a></h1>
+	<p class="info-text">{{ person.category }}</p>
+	<p class="info-text last_visit">Última visita: {{ person.date_in.strftime("%d/%m") }}</p>
+      </div>
+    </div>
+
+
+
+    <form class="form-create-history" method="POST">
+      <select class="text-form" id="title" name="title" type="text" required>
+	<option value="Examen Físico">Examen Físico</option>
+	<option value="Diagnóstico">Diagnóstico</option>
+	<option value="Tratamiento">Tratamiento</option>
+	<option value="Evolución y Pronóstico">Evolución y Pronóstico</option>
+	<option value="Nota" selected>Nota</option>
+      </select> 
+
+      <div class="grow-wrap">
+	<textarea class="text-form" type="text" name="content" onInput="this.parentNode.dataset.replicatedValue = this.value" required></textarea>
+      </div>
+
+
+      <button class="global-btn" type="submit">Crear historia</button>
+    </form>
+  {% else %}
+  <p>Persona no encontrada</p>
+  {% endif %}
+</div>
+{% endblock %}
+

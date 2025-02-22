@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Create person{% endblock %}
+
+{% block header %}
+    {% include 'snippets/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'snippets/flashes.html' %}
+<div class="create-person-container">
+
+    <div class="header-section header-section-create">
+      <div class="profile-section">
+	<img class="account-user-picture round-picture" src="{{ image_user }}">
+
+	<div class="user-info">
+	  <p>{{ current_user.speciality }}</p>
+	  <h2>{{ current_user.firstname }} {{ current_user.secondname }}</h2>
+	  <p>Nro. de pacientes: ({{ persons.total }})</p>
+	</div>
+
+      </div>
+      <button class="simple-btn create-person-btn-two"><a href="{{ url_for('person.persons') }}">Volver</a></button>
+    </div>
+
+    <button class="simple-btn back-person-btn-one"><a href="{{ url_for('person.persons') }}">Volver</a></button>
+
+  <form class="form-create-person" method="POST" enctype="multipart/form-data">
+    <h2 class="name-title">Crear nuevo paciente</h2>
+    <input type="hidden" name="formulario" value="2">
+
+    <label class="text-form" for="fullname">Nombre completo</label>
+    <input class="text-form" id="fullname" name="fullname" type="text" required>
+
+    <label class="text-form" for="email">Correo electrónico</label>
+    <input class="text-form long-field" id="email" name="email" type="email" required>
+
+    <label class="text-form" for="sufix_number">Número telefónico</label>
+    <div class="field-double mid-field">
+      <div class="left-field prefix">
+	<select class="text-form" id="prefix_number" name="prefix_number" type="number" required>
+	  <option value="0412">0412</option>
+	  <option value="0414">0414</option>
+	  <option value="0424">0424</option>
+	  <option value="0416">0416</option>
+	  <option value="0426">0426</option>
+	</select>
+      </div>
+
+      <div class="right-field sufix">
+	<input class="text-form" id="sufix_number" name="sufix_number" type="number" placeholder="000-0000" maxlength="7" minlength="7" inputmode="numeric" required>
+      </div>
+    </div>
+
+    <label class="text-form" for="category">Categoría</label>
+
+    <div class="field-double">
+      <div class="left-field">
+	<select class="text-form" id="category" name="category" type="text" required>
+	{% for category in categories %}
+	  <option value="{{ category.name }}">{{ category.name }}</option>
+	{% endfor %}
+	</select>
+      </div>
+      <div class="right-field">
+      </div>
+    </div>
+
+    <div class="field-double">
+      <div class="left-field">
+	<input class="update-btn" name="picture" id="picture" type="file" accept=".jpg, .png">
+	<div class="photo-btn overlay-layer">Subir foto</div>
+      </div>
+
+      <div class="right-field">
+	<button class="global-btn account-button" type="submit">Crear</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

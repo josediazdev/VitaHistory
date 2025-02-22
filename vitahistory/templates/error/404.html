@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Error 404{% endblock %}
+
+{% block header %}
+    {% include 'snippets/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'snippets/flashes.html' %}
+  <div class="error-404-container error-container">
+    <p class="name-title">La página a la que intentas acceder no existe</p>
+  </div>
+{% endblock %}
+
+
+

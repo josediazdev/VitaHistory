@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Reset{% endblock %}
+
+{% block header %}
+    {% include 'snippets/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+
+{% include 'snippets/flashes.html' %}
+
+<div class="reset-container">
+  <form class="form-reset" method="POST">
+    <label class="text-form" for="password">Nueva contraseña</label>
+    <input class="text-form" id="password" name="password" type="password" required>
+    <label class="text-form" for="password_two">Confirmar contraseña</label>
+    <input class="text-form" id="password_two" name="password_two" type="password" required>
+
+    <button class="global-btn reset-button" type="submit">Cambiar contraseña</button>
+  </form>
+</div>
+{% endblock %}
+
+

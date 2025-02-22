@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Account{% endblock %}
+
+{% block header %}
+    {% include 'snippets/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'snippets/flashes.html' %}
+<div class="account-container">
+  <div class="basic-info">
+    <img class="account-picture round-picture" src="{{ image_user }}">
+    <h2 class="text-title-h2 text-title">{{ current_user.firstname }} {{ current_user.secondname }}</h2>
+
+  </div>
+    <form class="form-account" method="POST" enctype="multipart/form-data">
+      
+      <div class="field-double">
+	<div class="left-field">
+	  <label class="text-form" for="firstname">Nombre</label>
+	  <input class="text-form" id="firstname" name="firstname" type="text"  value="{{ current_user.firstname }}" required>
+	</div>
+	<div class="right-field">
+	  <label class="text-form" for="secondname">Apellido</label>
+	  <input class="text-form" id="secondname" name="secondname" type="text" value="{{ current_user.secondname }}" required>
+	</div>
+      </div>
+
+      <label class="text-form" for="username">Nombre de usuario</label>
+      <input class="text-form mid-field" id="username" name="username" type="text" value="{{ current_user.username }}" required>
+
+      <label class="text-form" for="speciality">Especialidad</label>
+      <input class="text-form" id="speciality" name="speciality" type="text" value="{{ current_user.speciality }}" required>
+
+      <div class="field-double">
+	<div class="left-field update-btn-field">
+	  <input class="update-btn" name="picture" id="picture" type="file" accept=".jpg, .png">
+	  <div class="photo-btn overlay-layer">Subir foto</div>
+	</div>
+	<div class="right-field">
+	  <button class="global-btn account-button" type="submit">Actualizar</button>
+	</div>
+      </div>
+    </form>
+</div>
+{% endblock %}
+

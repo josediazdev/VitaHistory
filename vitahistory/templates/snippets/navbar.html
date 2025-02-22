@@ -1,0 +1,30 @@
+<div class="header-container">
+  <header>    
+    <nav class="navbar">
+	<div class="menu-container">
+	  <img class="logo-navbar" src="{{ url_for('static', filename='image/logo-vt-gr.webp') }}" width="255" height="77">
+
+	  <input type="checkbox" id="check">
+	  <label for="check" class="checker">
+	    <i class="fas fa-bars" id="menu-icon"></i>
+	    <i class="fas fa-times" id="cancel-icon"></i>
+	  </label>
+
+	  <ul id="nav-button">
+	    {% if current_user.is_authenticated %}
+	      <li class="nav-element"><a href="{{ url_for('index.start') }}">Menú</a></li>
+	      <li class="nav-element"><a href="{{ url_for('person.show_categories') }}">Categorías</a></li>
+	      <li class="nav-element"><a href="{{ url_for('index.account') }}">Cuenta</a></li>
+	      <li class="nav-element last-element"><a href="{{ url_for('auth.logout') }}">Cerrar sesión</a></li>
+	    {% else %}
+	      <li class="nav-element"><a href="{{ url_for('index.home') }}">Inicio</a></li>
+	      <li class="nav-element"><a href="{{ url_for('auth.login') }}">Iniciar sesión</a></li>
+	      <li class="nav-element last-element"><a href="{{ url_for('auth.register') }}">Registrarse</a></li>
+	    {% endif %}
+	  </ul>
+	</div>
+
+      </nav>
+  </header>
+
+</div>

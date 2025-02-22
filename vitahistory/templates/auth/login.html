@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+  <div class="link-header">
+    <div class="relleno"></div>
+    <a href="{{ url_for('index.home') }}"><span class="special-text-two">Volver a inicio</span></a>
+  <p class="more-info-one">Si todavía no tienes una cuenta puedes registrarte ahora <a class="special-text-two" href="{{ url_for('auth.register') }}">Registrarse gratis</a></p>
+  </div>
+
+  {% include 'snippets/flashes.html' %}
+
+
+<div class="login-container">
+
+
+  <div class="container-login-logo">
+    <div class="logo-content">
+      <img class="image-logo-login" src="{{ url_for('static', filename='image/logo-vt-gr.webp') }}">
+      <p class="secundary-text logo-login-text">tu espacio vital</p>
+    </div>
+
+    <div class="login-form-container">
+
+      <form class="form-login" method="POST">
+	<label class="text-form" for="username">Nombre de usuario o correo</label>
+	<input class="text-form" id="username" name="username" type="text" required>
+
+	<label class="text-form" for="password">Contraseña</label>
+	<input class="text-form" id="password" name="password" type="password" required>
+	<a href="{{ url_for('auth.reset_request') }}" class="link">olvidé mi contraseña</a>
+	<button class="global-btn login-button" type="submit">Iniciar sesión</button>
+      </form>
+
+      <div class="create-account-container">
+	<p>Nuevo usuario? <a href="{{ url_for('auth.register') }}" class="special-text-two">Crear una cuenta</a></p>
+      </div>
+    </div>
+  </div>
+
+  <p class="more-info-two">Si todavía no tienes una cuenta puedes registrarte ahora <a class="special-text-two" href="{{ url_for('auth.register') }}">Registrarse gratis</a></p>
+</div>
+{% endblock %}

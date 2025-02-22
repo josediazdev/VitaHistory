@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %} - VitaHistory</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <style>
+
+      body {
+	height: 100%;
+	margin: 0;
+	background-color: #EBEBEB;
+	overflow-x: hidden;
+
+      }
+      .body-container {
+	background-image: linear-gradient(
+	  0deg, rgba(0,0,0,0.7), rgba(0,0,0,0.7)
+
+	  )
+	,url({{ url_for('static', filename='image/logo-hero-seis-fondo.webp') }});
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+
+
+      }
+
+      .container-hero-five {
+	background-image: linear-gradient(
+	  0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)
+	  )
+
+	,url({{ url_for('static', filename='image/logo-hero-cinco.webp') }});
+	background-repeat: no-repeat;
+	background-position: center center;
+      }
+
+      .image-container-one {
+	background-image: linear-gradient(
+	  0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)
+	  )
+
+	  ,url('{{ url_for('static', filename='image/fondo-personas-registradas.webp') }}');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+      }
+
+      .image-container-two {
+	background-image: linear-gradient(
+	  0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)
+	  )
+
+	  ,url('{{ url_for('static', filename='image/fondo-citas-pendientes.webp') }}');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+      }
+
+
+      .image-container-three {
+	background-image: linear-gradient(
+	  0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)
+	  )
+
+	  ,url('{{ url_for('static', filename='image/fondo-pagos-por-cuotas.webp') }}');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+      }
+
+
+      .error-403-container {
+	background-image: url('{{ url_for('static', filename='image/403-error-bk.webp') }}');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+      }
+      
+      .error-404-container {
+	background-image: url('{{ url_for('static', filename='image/404-error-bk.webp') }}');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+      }
+
+      .error-500-container {
+	background-image: url('{{ url_for('static', filename='image/500-error-bk.webp') }}');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+      }
+    </style>
+
+
+  </head>
+
+    {% block header %}{% endblock %}
+
+
+  <body>
+    {% block content %}{% endblock %}
+  </body>
+
+</html>
