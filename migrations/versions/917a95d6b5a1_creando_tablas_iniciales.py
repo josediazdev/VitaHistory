@@ -1,8 +1,8 @@
-"""creando tablas de la base de datos
+"""Creando tablas iniciales
 
-Revision ID: aacc1bc0bd80
+Revision ID: 917a95d6b5a1
 Revises: 
-Create Date: 2025-02-22 14:55:52.849282
+Create Date: 2025-03-10 10:18:33.737477
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'aacc1bc0bd80'
+revision = '917a95d6b5a1'
 down_revision = None
 branch_labels = None
 depends_on = None

@@ -5,3 +5,4 @@ flask-login
 pillow
 sendgrid
 flask-migrate
+pymysql

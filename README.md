@@ -22,7 +22,7 @@ Diseño responsivo y fácil de usar, accesible desde diferentes dispositivos.
 ## Tecnologías utilizadas:
 
 - Flask (Python): Framework web para el desarrollo de la aplicación.
-- Base de datos: SQLite para el almacenamiento seguro de la información.
+- Base de datos: Actualizada a MySQL para mejorar la seguridad de los datos, gestionar registros concurrentes de manera eficiente y aumentar la escalabilidad de la aplicación.
 - HTML y CSS : Para la interfaz de usuario.
 
 **Este proyecto se realizó a modo práctica para el desarrollo de aplicaciones web con Python, aún está en proceso de desarrollo y se van agregando mejoras. **
