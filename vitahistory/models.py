@@ -57,7 +57,7 @@ class Person(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     fullname = db.Column(db.String(50), unique=False, nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
-    phonenumber = db.Column(db.Integer, unique=True, nullable=False)
+    phonenumber = db.Column(db.String(20), unique=True, nullable=False)
     category = db.Column(db.String(100))
     image_person = db.Column(db.String(50), nullable=False, default='default2.jpg')
     date_in = db.Column(db.DateTime, nullable=False)

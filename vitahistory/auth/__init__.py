@@ -44,7 +44,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('index.start'))
 
         if error1 is not None and error2 is not None:
-            flash("El usuario/correo o contraseña no son inválidos, intente nuevamente", 'warning')
+            flash("El usuario/correo o contraseña no son válidos, intente nuevamente", 'warning')
 
     return render_template('auth/login.html')
 
@@ -55,10 +55,10 @@ def register():
         redirect(url_for('index.start'))
 
     if request.method == "POST":
-        firstname = request.form["firstname"]
-        secondname = request.form["secondname"]
+        firstname = request.form["firstname"].title()
+        secondname = request.form["secondname"].title()
         email = request.form["email"]
-        username = request.form["username"]
+        username = request.form["username"].lower()
         password = request.form["password"]
         password_two = request.form["password_two"]
         gender = request.form["gender"]

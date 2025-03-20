@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Create person{% endblock %}
+{% block title %}Create Patient{% endblock %}
 
 {% block header %}
     {% include 'snippets/navbar.html' %}
@@ -49,7 +49,7 @@
       </div>
 
       <div class="right-field sufix">
-	<input class="text-form" id="sufix_number" name="sufix_number" type="number" placeholder="000-0000" maxlength="7" minlength="7" inputmode="numeric" required>
+	<input class="text-form" id="sufix_number" name="sufix_number" type="number" placeholder="000-0000" inputmode="numeric" required>
       </div>
     </div>
 
@@ -58,10 +58,15 @@
     <div class="field-double">
       <div class="left-field">
 	<select class="text-form" id="category" name="category" type="text" required>
-	{% for category in categories %}
-	  <option value="{{ category.name }}">{{ category.name }}</option>
-	{% endfor %}
-	</select>
+	  {% if not categories %}
+	    <option value="Sin categoría">Sin categoría</option>
+	  {% else %}
+	    <option value="Sin categoría">Sin categoría</option>
+	    {% for category in categories %}
+		<option value="{{ category.name }}">{{ category.name }}</option>
+	    {% endfor %}
+	  {% endif %}
+      </select>
       </div>
       <div class="right-field">
       </div>

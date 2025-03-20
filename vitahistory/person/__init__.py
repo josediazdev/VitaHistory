@@ -26,14 +26,25 @@ def persons():
 @login_required
 def create_person():
     if request.method == "POST":
-        fullname = request.form["fullname"]
+        fullname = request.form["fullname"].title()
         email = request.form["email"]
         prefix_number = request.form["prefix_number"]
         sufix_number = request.form["sufix_number"]
         date_in = get_current_time()
         category = request.form["category"]
+
     
         phonenumber = prefix_number + sufix_number
+
+        if len(phonenumber) > 11:
+
+            flash('El número telefónico excede la cantidad de digitos')
+            return redirect(url_for('person.create_person'))
+
+        elif len(phonenumber) < 11:
+
+            flash('El número telefónico no cumple la cantidad de digitos')
+            return redirect(url_for('person.create_person'))
 
         image_person = None
 
@@ -110,9 +121,7 @@ def create_category():
 
 
         if request.form["formulario"] == "1":
-            category = request.form["category"]
-
-            category = category.capitalize()
+            category = request.form["category"].capitalize()
 
             cat_instance = Category.query.filter_by(name=category).filter_by(user_id=current_user.id).first()
 
@@ -184,11 +193,20 @@ def edit_person(person_id):
         abort(403)
 
     if request.method == "POST":
-        fullname = request.form["fullname"]
+        fullname = request.form["fullname"].title()
         email = request.form["email"]
         phonenumber = request.form["phonenumber"]
-        phonenumber = int(phonenumber)
         category = request.form["category"]
+
+        if len(phonenumber) > 11:
+
+            flash('El número telefónico excede la cantidad de digitos')
+            return redirect(url_for('person.edit_person', person_id=person_id))
+
+        elif len(phonenumber) < 11:
+
+            flash('El número telefónico no cumple la cantidad de digitos')
+            return redirect(url_for('person.edit_person', person_id=person_id))
     
         image_person = None
 
@@ -274,7 +292,7 @@ def delete_person(person_id):
             db.session.delete(person)
             db.session.commit()
 
-            flash('Persona borrada exitosamente', 'success')
+            flash('Paciente borrado exitosamente', 'success')
             return redirect(url_for('person.persons'))
 
     page = request.args.get('page', 1, type=int)
