@@ -88,11 +88,6 @@ def send_reset_email(user, to_email, to_username):
     """.format(to_username, to_email, url_for('auth.reset_final', token=token, _external=True)), subtype='html')
 
 
-    with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-        smtp.ehlo()
-        smtp.starttls()
-        smtp.ehlo()
-
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-
         smtp.send_message(msg)
